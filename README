@@ -1,0 +1,14 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2968
+
+This ftplugin eases the editing of IkiWiki wikis by providing the following features:
+
+  * Wikilink autocompletion through omnicompletion.
+  * Jump to previous/next wikilink
+  * Open the file corresponding to the wikilink under the cursor in the current window/a new window/a new tab page
+  * Create the file corresponing to the wikilink under the cursor in the current window/a new window/a new tab page
+
+For the usage details, mappings defined and other stuff, see :help ikiwiki-intro after you install the plugin
+
+There is a git repo for the plugin in  http://git.devnull.li/ikiwiki-nav.git/. The master branch always has the latest stable version, and the dev branch has the latest version of the plugin.
+
+Feel free to contact the author (see the AUTHORS file in the package) with bug reports/suggestions/whatever :)
