@@ -72,40 +72,25 @@ endif
 " }}}1
 
 " mapping definitions {{{1
+" {{{2 helper to define mappings
+function! s:safe_map(keys, command)
+  if !hasmapto(a:command, 'n') && maparg(a:keys, 'n') == ""
+    execute 'noremap <unique> <buffer> ' a:keys a:command '<CR>'
+  endif
+endfunction
 " {{{2 page jumping
-if !(hasmapto(':IkiJumpToPageCW'))
-  noremap <unique> <buffer> <CR> :IkiJumpToPageCW<CR>
-  noremap <unique> <buffer> <C-h> :IkiJumpToPageCW<CR>
-endif
-if !(hasmapto(':IkiJumpToPageHW'))
-  noremap <unique> <buffer> <C-j> :IkiJumpToPageHW<CR>
-endif
-if !(hasmapto(':IkiJumpToPageVW'))
-  noremap <unique> <buffer> <C-k> :IkiJumpToPageVW<CR>
-endif
-if !(hasmapto(':IkiJumpToPageNT'))
-  noremap <unique> <buffer> <C-l> :IkiJumpToPageNT<CR>
-endif
+call s:safe_map('<C-h>', ':IkiJumpToPageCW')
+call s:safe_map('<C-j>', ':IkiJumpToPageHW')
+call s:safe_map('<C-k>', ':IkiJumpToPageVW')
+call s:safe_map('<C-l>', ':IkiJumpToPageNT')
 " {{{2 page creation
-if !(hasmapto(':IkiJumpOrCreatePageCW'))
-  noremap <unique> <buffer> <Leader>h :IkiJumpOrCreatePageCW<CR>
-endif
-if !(hasmapto(':IkiJumpOrCreatePageHW'))
-  noremap <unique> <buffer> <Leader>j :IkiJumpOrCreatePageHW<CR>
-endif
-if !(hasmapto(':IkiJumpOrCreatePageVW'))
-  noremap <unique> <buffer> <Leader>k :IkiJumpOrCreatePageVW<CR>
-endif
-if !(hasmapto(':IkiJumpOrCreatePageNT'))
-  noremap <unique> <buffer> <Leader>l :IkiJumpOrCreatePageNT<CR>
-endif
+call s:safe_map('<Leader>h', ':IkiJumpOrCreatePageCW')
+call s:safe_map('<Leader>j', ':IkiJumpOrCreatePageHW')
+call s:safe_map('<Leader>k', ':IkiJumpOrCreatePageVW')
+call s:safe_map('<Leader>l', ':IkiJumpOrCreatePageNT')
 " {{{2 link navigation
-if !(hasmapto(':IkiNextWikiLink'))
-  noremap <buffer> <C-n> :IkiNextWikiLink<CR>
-endif
-if !(hasmapto(':IkiPrevWikiLink'))
-  noremap <buffer> <C-p> :IkiPrevWikiLink<CR>
-endif
+call s:safe_map('<C-n>', ':IkiNextWikiLink')
+call s:safe_map('<C-p>', ':IkiPrevWikiLink')
 
 " }}}1
 

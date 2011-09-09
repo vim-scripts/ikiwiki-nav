@@ -1,7 +1,7 @@
 *ikiwiki-nav.txt*	Ftplugin to help creation and navigation of ikiwiki pages
 
 Author: Javier Rojas <jerojasro@devnull.li>
-Version: 2.0
+Version: 2.0.2
 
 ==============================================================================
 INTRODUCTION                                                   *ikiwiki-intro*
@@ -26,17 +26,16 @@ mechanism. This takes into account the ikiwiki subpage linking rules, by
 checking "upwards" the directory tree to find the directory path that best
 fits the structure defined by the link.
 
-  For example, if FooBar/SubPage links to "OtherPage", ikiwiki will first
-  prefer pointing the link to FooBar/SubPage/OtherPage if it exists, next to
-  FooBar/OtherPage and finally to OtherPage in the root of the wiki.
+For example, if FooBar/SubPage links to "OtherPage", ikiwiki will first
+prefer pointing the link to FooBar/SubPage/OtherPage if it exists, next to
+FooBar/OtherPage and finally to OtherPage in the root of the wiki.
 
-  You can also specify a link that contains a directory name, like
-  "FooBar/OtherPage" to more exactly specify what page to link to. This is the
-  only way to link to an unrelated SubPage.
+You can also specify a link that contains a directory name, like
+"FooBar/OtherPage" to more exactly specify what page to link to. This is the
+only way to link to an unrelated SubPage.
 
-  You can use this to, for example, to link from BazBar to "FooBar/SubPage", or
-  from BazBar/SubPage to "FooBar/SubPage".
-<
+You can use this to, for example, to link from BazBar to "FooBar/SubPage", or
+from BazBar/SubPage to "FooBar/SubPage".
 
 It completes not only pages, but also files and directories.
 
@@ -162,6 +161,21 @@ Move the cursor to the closest wikilink after it. Mapped to <C-n> by default.
 Move the cursor to the closest wikilink before it. Mapped to <C-p> by default.
 
 ==============================================================================
+TROUBLESHOOTING MAPPINGS                                *ikiwiki-map-problems*
+
+Since version 2.0.1, ikiwiki-nav creates every default mapping only if:
+
+  - The |{lhs}| of the mapping is not used in an already-defined map.
+  - The |{rhs}| of the mapping doesn't have any mapping yet.
+
+This is done to avoid interfering with existent mappings.
+
+If one of the default maps for ikiwiki-nav doesn't work for you, it is
+possible that the ikiwiki-nav map is being shadowed by another map that you
+(or another Vim plugin) have defined. This can by solved by redefining the
+map in your .vimrc file, or putting it in after/ftplugin/ikiwiki.vim.
+
+==============================================================================
 REDEFINE MAPPINGS                                      *ikiwiki-redefine-maps*
 
 If you don't like the default value for the mappings defined for the commands
@@ -171,7 +185,7 @@ file.
 For example, if you want to redefine the command used to jump to the next
 wikilink (|:IkiNextWikiLink|) to the <C-Right> key sequence, do the following:
 >
-  map <C-Right> :IkiNextWikiLink<CR>
+  nmap <C-Right> :IkiNextWikiLink<CR>
 <
 You can do this for any of the commands provided by this plugin.
 
